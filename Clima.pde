@@ -14,15 +14,15 @@ class Clima {
   Clima(float mitX, float mitY) { // primavera por defecto ya que 
                                   //la migración inicia desde el norte( en otoño) al sur
     estacion = false;
+    numImages = 50;
     temperatura = (int)random(-11, 25);
     imageShapes = new PShape[50]; // Inicializa el arreglo de figuras
     sol = loadImage("resources\\images\\sol.png");
     nubes = loadImage("resources\\images\\nubes.png");
-    this.createClouds();
     scaleFactor = 0.3;
     this.mapX = mitX;
     this.mapY = mitY;
-    numImages = 50;
+    this.createClouds();
   }
   
   private void createClouds(){
