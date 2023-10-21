@@ -1,19 +1,53 @@
 class PathSegment {
   PVector start;
   PVector end;
-  float r;
   color c;
 
   PathSegment(float x1, float z1, float x2, float z2) {
-    start = new PVector(x1, 0, z1);
-    end = new PVector(x2, 0, z2);
-    this.r = 2;
+    start = new PVector(x1, pathY, z1);
+    end = new PVector(x2, pathY, z2);
     this.c = #7E9558;
   }
-
   void display() {
-    strokeWeight(r * 2);
+    beginShape();
+    strokeWeight(8);
+    strokeJoin(ROUND);
     stroke(c);
+    noFill();
+    vertex(start.x, start.z, start.y);
+
+    int numVertices = 10; 
+    for (int i = 1; i <= numVertices; i++) {
+      float alpha = float(i) / numVertices;
+      float x = lerp(start.x, end.x, alpha);
+      float y = lerp(start.y, end.y, alpha);
+      float z = lerp(start.z, end.z, alpha);
+      vertex(x, z, y);
+    }
+
+    vertex(end.x, end.z, end.y);
+    endShape();
+    
+    if (debug) {
+      // Dibuja puntos para marcar el inicio y el final
+      pushMatrix();
+      translate(start.x, start.z, start.y);
+      stroke(255, 0, 0);
+      sphere(5);
+      popMatrix();
+
+      pushMatrix();
+      translate(end.x, end.z, end.y);
+      stroke(0, 0, 255);
+      sphere(5);
+      popMatrix();
+    }
+  }
+
+  void displayLine() {
+    strokeWeight(8);
+    stroke(c);
+    strokeJoin(ROUND);
     line(start.x, start.z, start.y, end.x, end.z, end.y);
 
     if (debug) {
@@ -31,6 +65,7 @@ class PathSegment {
       popMatrix();
     }
   }
+  
   float distance(PVector pos) {
     PVector v = PVector.sub(pos, start);
     PVector w = PVector.sub(end, start);

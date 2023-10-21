@@ -4,20 +4,15 @@ PeasyCam cam;
 PImage img;
 boolean debug = false;
 boolean showGrid = false;
-Path path;
+Path path  = new Path();
 int gridSize = 40;
 FoodManager foodManager = new FoodManager();
-
+float pathY = 25;
 PImage treeImage;
 void setup() {
   size(1200, 720, P3D);
   cam = new PeasyCam(this, 100);
   img = loadImage("resources\\images\\_map.png");
-  
-  path = new Path();
-  path.addPointByGrid(0,0,1,1);
-  path.addPointByGrid(1,1,2,1);
-  
 
   foodManager.addFood(53, 58, 54, 59, 100, "Wheat");
   foodManager.addFood(54, 58, 55, 59, 100, "Rice");
@@ -26,7 +21,37 @@ void setup() {
   foodManager.addFood(57, 58, 58, 59, 100, "Corn");
   foodManager.addFood(58, 58, 59, 59, 100, "Blueberries");
   //setCamAngle();
+  loadJSONFromFile("pacific");
+  loadJSONFromFile("mississippi");
+  loadJSONFromFile("central");
 }
+
+void loadJSONFromFile(String fileName) {
+  String filePath = "resources\\data\\" + fileName + ".json";
+
+  JSONObject json = loadJSONObject(filePath);
+
+  if (json != null) {
+    int index = 1;
+    while (json.hasKey("path_" + index)) {
+      JSONObject pathData = json.getJSONObject("path_" + index);
+      JSONArray casilla1 = pathData.getJSONArray("casilla1");
+      JSONArray casilla2 = pathData.getJSONArray("casilla2");
+
+      int x1 = casilla1.getInt(0);
+      int y1 = casilla1.getInt(1);
+      int x2 = casilla2.getInt(0);
+      int y2 = casilla2.getInt(1);
+
+      path.addPointByGrid(x1, y1, x2, y2);
+
+      index++;
+    }
+  } else {
+    println("Failed to load JSON file: resources\\data\\" + fileName + ".json");
+  }
+}
+
 void setCamAngle() {
   cam.setRotations(-0.7211126, 7.4951706E-4, 0.0048639337);
   cam.lookAt(23.127522, 487.21622, 1671.39);
@@ -85,7 +110,7 @@ void draw() {
 void drawGrid() {
   int numRows = ceil(img.height / float(gridSize));
   int numCols = ceil(img.width / float(gridSize));
-  
+
   float startX = -img.width / 2;
   float startY = -img.height;
 
