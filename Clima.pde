@@ -8,15 +8,15 @@ class Clima {
   float scaleFactor;
   float mapX; //el mitad ancho del mapa
   float mapY;//el mitad largo del mapa
-  float numImages;
+  int numImages;
   
   
   Clima(float mitX, float mitY) { // primavera por defecto ya que 
                                   //la migración inicia desde el norte( en otoño) al sur
     estacion = false;
-    numImages = 50;
+    numImages = 40;
     temperatura = (int)random(-11, 25);
-    imageShapes = new PShape[50]; // Inicializa el arreglo de figuras
+    imageShapes = new PShape[numImages]; // Inicializa el arreglo de figuras
     sol = loadImage("resources\\images\\sol.png");
     nubes = loadImage("resources\\images\\nubes.png");
     scaleFactor = 0.3;
@@ -38,8 +38,8 @@ class Clima {
           x = random(-mapX/7 , mapY/3 );
           y = random(-mapX/4 , mapY/5);
         }else {
-          x = random(-mapY/5 , mapX/3 );
-          y = random(mapY/6, mapX/4);
+          x = random(-mapY/4 , mapX/3 );
+          y = random(-mapY/4, mapX/59);
         }
         float z = random(50,100);
         noStroke();

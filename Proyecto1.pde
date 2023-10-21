@@ -2,6 +2,7 @@ import peasy.*;
 
 PeasyCam cam;
 PImage img;
+PImage nubes; 
 boolean debug = false;
 boolean showGrid = false;
 Path path  = new Path();
@@ -9,10 +10,13 @@ int gridSize = 40;
 FoodManager foodManager = new FoodManager();
 float pathY = 25;
 PImage treeImage;
+Clima clima;
+
 void setup() {
   size(1200, 720, P3D);
-  cam = new PeasyCam(this, 100);
+  cam = new PeasyCam(this, 1000);
   img = loadImage("resources\\images\\_map.png");
+  clima = new Clima(img.width,img.height);
 
   foodManager.addFood(53, 58, 54, 59, 100, "Wheat");
   foodManager.addFood(54, 58, 55, 59, 100, "Rice");
@@ -100,11 +104,13 @@ void draw() {
   translate(0, 0, 0);
   image(img, -img.width/2, -img.height);
   popMatrix();
+  clima.display();
   if (showGrid) drawGrid();
   if (debug) drawAxes(2000);
 
   foodManager.display();
   path.display();
+  
 }
 
 void drawGrid() {
