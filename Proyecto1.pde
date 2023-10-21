@@ -3,26 +3,29 @@ import peasy.*;
 PeasyCam cam;
 PImage img;
 boolean debug = false;
-boolean showGrid = true;
+boolean showGrid = false;
 Path path;
-int gridSize = 20;
-ForestManager forests = new ForestManager();
-PImage treeImage;
+int gridSize = 40;
+FoodManager foodManager = new FoodManager();
 
+PImage treeImage;
 void setup() {
   size(1200, 720, P3D);
   cam = new PeasyCam(this, 100);
   img = loadImage("resources\\images\\_map.png");
-  treeImage = loadImage("resources\\images\\tree_1.png");
   
   path = new Path();
   path.addPointByGrid(0,0,1,1);
   path.addPointByGrid(1,1,2,1);
-  forests.addForest(1, 0, 2, 1, 50);
-  forests.addForest(2, 1, 3, 2, 15);
-  forests.addForest(1, 3, 2, 4, 100);
+  
 
-  setCamAngle();
+  foodManager.addFood(53, 58, 54, 59, 100, "Wheat");
+  foodManager.addFood(54, 58, 55, 59, 100, "Rice");
+  foodManager.addFood(55, 58, 56, 59, 100, "Tree");
+  foodManager.addFood(56, 58, 57, 59, 100, "Fly");
+  foodManager.addFood(57, 58, 58, 59, 100, "Corn");
+  foodManager.addFood(58, 58, 59, 59, 100, "Blueberries");
+  //setCamAngle();
 }
 void setCamAngle() {
   cam.setRotations(-0.7211126, 7.4951706E-4, 0.0048639337);
@@ -75,7 +78,7 @@ void draw() {
   if (showGrid) drawGrid();
   if (debug) drawAxes(2000);
 
-  forests.display();
+  foodManager.display();
   path.display();
 }
 
