@@ -18,7 +18,7 @@ class FoodManager:
         
     def load_json(self):
         try:
-            with open(path_file + "\\food_data.json", "r") as json_file:
+            with open(path_file + "\\food.json", "r") as json_file:
                 json_data = json_file.read()  # Leer todo el contenido del archivo JSON
                 if json_data:  # Verificar si el contenido del archivo no está vacío
                     data = json.loads(json_data)
@@ -30,7 +30,7 @@ class FoodManager:
                 else:
                     print("JSON file is empty.")
         except FileNotFoundError:
-            print("No 'food_data.json' file found.")
+            print("No 'food.json' file found.")
         except json.decoder.JSONDecodeError as e:
             print(f"Error decoding JSON: {e}")
 
@@ -195,7 +195,7 @@ for tool in tools_to_add: tool_manager.add_tool(tool)
 background_tool_color = (100, 100, 100)
 background_rect = pygame.Rect(window_width - 280, 0, 280, 40)
 
-slider = Slider(window, window_width - 260, 10, 200, 20, min=1, max=100, step=1, handleColour=(0, 0, 0))
+slider = Slider(window, window_width - 260, 10, 200, 20, min=1, max=255, step=1, handleColour=(0, 0, 0))
 font = pygame.font.Font(None, 24)
 slider_text_box = TextBox(window, window_width - 40, 0, 40, 40, fontSize=24, colour=background_tool_color, borderThickness = 0)
 slider_text_box.disable()
@@ -301,7 +301,7 @@ if save_food:
 
     if not food_data: food_data = []
 
-    with open(path_file + "\\food_data.json", "w") as json_file:
+    with open(path_file + "\\food.json", "w") as json_file:
         json.dump(food_data, json_file, indent=4)
 
        

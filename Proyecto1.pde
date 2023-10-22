@@ -17,20 +17,36 @@ void setup() {
   cam = new PeasyCam(this, 1000);
   img = loadImage("resources\\images\\_map.png");
   clima = new Clima(img.width,img.height);
+  sphereDetail(6);
 
-  foodManager.addFood(53, 58, 54, 59, 100, "Wheat");
-  foodManager.addFood(54, 58, 55, 59, 100, "Rice");
-  foodManager.addFood(55, 58, 56, 59, 100, "Tree");
-  foodManager.addFood(56, 58, 57, 59, 100, "Fly");
-  foodManager.addFood(57, 58, 58, 59, 100, "Corn");
-  foodManager.addFood(58, 58, 59, 59, 100, "Blueberries");
   //setCamAngle();
-  loadJSONFromFile("pacific");
-  loadJSONFromFile("mississippi");
-  loadJSONFromFile("central");
+  loadPathJSONFromFile("pacific");
+  loadPathJSONFromFile("mississippi");
+  loadPathJSONFromFile("central");
+  loadFoodJSONFromFile();
 }
 
-void loadJSONFromFile(String fileName) {
+void loadFoodJSONFromFile() {
+  String filePath = "resources\\data\\food.json";
+  JSONArray jsonArray = loadJSONArray(filePath);
+
+  if (jsonArray != null) {
+    for (int i = 0; i < jsonArray.size(); i++) {
+      JSONObject foodData = jsonArray.getJSONObject(i);
+
+      String food = foodData.getString("food");
+      JSONArray position = foodData.getJSONArray("position");
+      int x = position.getInt(0);
+      int y = position.getInt(1);
+      int density = foodData.getInt("density");
+      foodManager.addFood(x, y, density, food);
+    }
+  } else {
+    println("Failed to load JSON file: resources\\data\\food.json");
+  }
+}
+
+void loadPathJSONFromFile(String fileName) {
   String filePath = "resources\\data\\" + fileName + ".json";
 
   JSONObject json = loadJSONObject(filePath);

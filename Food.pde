@@ -80,7 +80,11 @@ class FoodManager {
   FoodManager() {
     foodSystem = new ArrayList<FoodSystem>();
   }
-
+  
+  void addFood(int x, int y, int density, String type) {
+    FoodSystem fs = new FoodSystem(x, y, x+1, y+1, density, type);
+    foodSystem.add(fs);
+  }
   void addFood(int x1, int y1, int x2, int y2, int density, String type) {
     FoodSystem fs = new FoodSystem(x1, y1, x2, y2, density, type);
     foodSystem.add(fs);
