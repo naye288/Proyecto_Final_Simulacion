@@ -188,7 +188,7 @@ border = 40
 first_x, first_y = 0, 0
     
 tool_manager = ToolManager()
-tools_to_add = ["eraser", "wheat", "fly", "blueberries", "rice", "corn"]
+tools_to_add = ["eraser", "wheat", "fly", "blueberries", "rice", "corn", "tree"]
 for tool in tools_to_add: tool_manager.add_tool(tool)
 
 # Slider
