@@ -17,7 +17,7 @@ void setup() {
   cam = new PeasyCam(this, 1000);
   img = loadImage("resources\\images\\_map.png");
   clima = new Clima(img.width,img.height);
-  sphereDetail(6);
+  sphereDetail(2);
 
   //setCamAngle();
   loadPathJSONFromFile("pacific");

@@ -45,22 +45,22 @@ class FoodSystem {
 
       float randomY = gy1 + random(gy2);
       switch(type) {
-      case "Wheat":
+      case "wheat":
         foods.add(new Wheat(randomX, randomY));
         break;
-      case "Rice":
+      case "rice":
         foods.add(new Rice(randomX, randomY));
         break;
-      case "Tree":
+      case "tree":
         foods.add(new Tree(randomX, randomY));
         break;
-      case "Fly":
+      case "fly":
         foods.add(new Fly(randomX, randomY));
         break;
-      case "Corn":
+      case "corn":
         foods.add(new Corn(randomX, randomY));
         break;
-      case "Blueberries":
+      case "blueberries":
         foods.add(new Blueberries(randomX, randomY));
         break;
       }

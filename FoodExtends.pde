@@ -1,4 +1,4 @@
-
+int denFood3D = 6;
 class Tree extends Food {
   int sizeTree;
   int leafRadius;
@@ -54,7 +54,7 @@ class Wheat extends Food {
 
     wheatColors = new ArrayList<Integer>();
     positions = new ArrayList<PVector>();
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < denFood3D; i++) {
       float posX = random(-lengthLine, lengthLine);
       float posY = random(-lengthLine, lengthLine);
       float posZ = random(2, 5);
@@ -98,7 +98,7 @@ class Corn extends Food {
     cornStemColors = new ArrayList<Integer>();
     cornCornColors = new ArrayList<Integer>();
     positions = new ArrayList<PVector>();
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < denFood3D; i++) {
       float posX = random(-lengthLine, lengthLine);
       float posY = random(-lengthLine, lengthLine);
       float posZ = random(2, 5);
@@ -151,7 +151,7 @@ class Rice extends Food {
     riceSeedColors = new ArrayList<Integer>();
     int lengthLine = (int) random(2, 5);
 
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < denFood3D; i++) {
       float posX = random(-lengthLine, lengthLine);
       float posY = random(-lengthLine, lengthLine);
       float posZ = random(2, 5);
