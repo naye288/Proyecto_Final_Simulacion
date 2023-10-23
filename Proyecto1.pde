@@ -23,6 +23,7 @@ void setup() {
   loadPathJSONFromFile("pacific");
   loadPathJSONFromFile("mississippi");
   loadPathJSONFromFile("central");
+  loadPathJSONFromFile("atlantic");
   loadFoodJSONFromFile();
 }
 
