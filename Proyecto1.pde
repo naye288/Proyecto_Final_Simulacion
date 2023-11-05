@@ -10,13 +10,15 @@ int gridSize = 40;
 FoodManager foodManager = new FoodManager();
 float pathY = 25;
 PImage treeImage;
-Clima clima;
+ArrayList<SystemSeasons> clima;
 
 void setup() {
   size(1200, 720, P3D);
   cam = new PeasyCam(this, 1000);
   img = loadImage("resources\\images\\_map.png");
-  clima = new Clima(img.width,img.height);
+  clima = new ArrayList<SystemSeasons>();
+  clima.add(new SystemSeasons(true));//sur de norteamerica
+  clima.add(new SystemSeasons(false));//norte de norteamerica
   sphereDetail(2);
 
   //setCamAngle();
@@ -112,6 +114,19 @@ void keyPressed() {
     float[] position = cam.getPosition();
     println("Posición: " + "x: " + position[0] + ", y: " + position[1] + ", z: " + position[2]);
   }
+  if (key == 'z' || key == 'o') {//cambio estacion
+    if (key == 'z') {
+      clima.get(0).changeSeason();
+    } else if (key == 'o') {
+      clima.get(1).changeSeason();
+    }
+  } else if (key == 's' || key == 'p') {// cambio temperatura
+    if (key == 's') {
+      clima.get(0).changesTemp();
+    } else if (key == 'p') {
+      clima.get(1).changesTemp();
+    }
+  }
 }
 
 
@@ -119,9 +134,11 @@ void draw() {
   background(0);
   pushMatrix();
   translate(0, 0, 0);
-  image(img, -img.width/2, -img.height);
+  image(img, -img.width/2, -img.height/2);
   popMatrix();
-  clima.display();
+  for (SystemSeasons s : clima){
+    s.display();
+  }
   if (showGrid) drawGrid();
   if (debug) drawAxes(2000);
 
