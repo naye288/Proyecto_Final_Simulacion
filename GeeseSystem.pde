@@ -9,6 +9,8 @@ class GeeseSystem {
     // Este método actualiza y dibuja a la vez
     void update() {
         for (Goose goose : geese) {
+            goose.wander();
+            goose.flock(geese);
             goose.update();
             goose.display();
         }

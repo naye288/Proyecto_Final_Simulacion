@@ -106,8 +106,7 @@ void keyPressed() {
   
   // ------ -------SOLO PARA PRUEBA ---------------------
   if (keyPressed && key == '0') {
-    geeseSystem.addAgent(height/2, width/2, 50, 50);
-    println(geeseSystem.geese.size());
+    geeseSystem.addAgent(img.width/20, img.height/20, 50, 50);
   }
   // ----------------------------------------------------
   
