@@ -8,7 +8,7 @@ class Estaciones {
   PImage[] imagenes;
   int[] x; // Arreglo para las posiciones x
   int[] y; // Arreglo para las posiciones y
-  int cant = 10;
+  int cant = 15;
   
   Estaciones (int temp, String estacion, boolean pos){
     temperatura = temp;

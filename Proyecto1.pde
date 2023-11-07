@@ -143,7 +143,7 @@ void draw() {
   background(0);
   pushMatrix();
   translate(0, 0, 0);
-  image(img, -img.width/2, -img.height/2);
+  image(img, -img.width/2, -img.height);
   popMatrix();
   for (SystemSeasons s : clima){
     s.display();
