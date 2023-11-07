@@ -35,11 +35,11 @@ class Estaciones {
     for (int i = 0; i < cant; i++) {
       int posX, posY;
       if (pos) { // sur de NorteAmérica
-        posX = (int) random(-mapY / 2, mapX / 4);
-        posY = (int) random(mapY / 6, mapX / 4);
+        posX = (int) random(-mapY /5, mapX /3);
+        posY = (int) random(-mapY / 3, -mapX / 10);
       } else { // norte de NorteAmérica
-        posX = (int) random(-mapX / 4, mapY / 3);
-        posY = (int) random(-mapX / 4, mapY / 6);
+        posX = (int) random(-mapY /4, mapX /4);
+        posY = (int) random(-mapX/2, -mapY/3);
       }
       imagenes[i] = loadImage(nubes);
       imagenes[i].resize(300, 200);
@@ -58,11 +58,11 @@ class Estaciones {
     String mens= "Estación: " ;
     String mens1= "Temperatura: ";
     if (pos){// sur de NorteAmérica
-      text(mens + estacion, -1800, 1000);
-      text(mens1 + str(temperatura), -1800, 1100);
+      text(mens + estacion, -1800, -200);
+      text(mens1 + str(temperatura), -1800, -100);
     }else{
-      text(mens + estacion, 1400, -1100);
-      text(mens1 + str(temperatura), 1400, -1000);
+      text(mens + estacion, 1400, -2200);
+      text(mens1 + str(temperatura), 1400, -2100);
     }
     
   }
