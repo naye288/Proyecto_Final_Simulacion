@@ -6,6 +6,7 @@ PImage nubes;
 boolean debug = false;
 boolean showGrid = false;
 Path path  = new Path();
+GeeseSystem geeseSystem;
 int gridSize = 40;
 FoodManager foodManager = new FoodManager();
 float pathY = 25;
@@ -19,6 +20,7 @@ void setup() {
   clima = new ArrayList<SystemSeasons>();
   clima.add(new SystemSeasons(true));//sur de norteamerica
   clima.add(new SystemSeasons(false));//norte de norteamerica
+  geeseSystem = new GeeseSystem();
   sphereDetail(2);
 
   //setCamAngle();
@@ -101,6 +103,14 @@ void keyPressed() {
     cam.reset();
     //setCamAngle();
   }
+  
+  // ------ -------SOLO PARA PRUEBA ---------------------
+  if (keyPressed && key == '0') {
+    geeseSystem.addAgent(height/2, width/2, 50, 50);
+    println(geeseSystem.geese.size());
+  }
+  // ----------------------------------------------------
+  
   if (keyPressed && Character.toLowerCase(key) == 'd') {
     debug = !debug;
   }
@@ -144,6 +154,7 @@ void draw() {
 
   foodManager.display();
   path.display();
+  geeseSystem.update();
   
 }
 
@@ -151,7 +162,7 @@ void drawGrid() {
   int numRows = ceil(img.height / float(gridSize));
   int numCols = ceil(img.width / float(gridSize));
 
-  float startX = -img.width / 2;
+  float startX = -img.width;
   float startY = -img.height;
 
   stroke(#6c79a6);
