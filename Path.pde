@@ -1,10 +1,12 @@
 class Path {
   ArrayList<PathSegment> segments;
   ArrayList<PVector> points;
+  color c;
 
-  Path() {
+  Path(color c) {
     segments = new ArrayList();
     points = new ArrayList();
+    this.c = c;
   }
   void addPointByGrid(int x1, int y1, int x2, int y2) {
     float startX = -img.width / 2;
@@ -22,7 +24,7 @@ class Path {
     PVector end = new PVector(x2, 0, z2);
     points.add(start);
     points.add(end);
-    PathSegment s = new PathSegment(x1, z1, x2, z2);
+    PathSegment s = new PathSegment(x1, z1, x2, z2, c);
     segments.add(s);
   }
   void display() {

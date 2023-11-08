@@ -2,16 +2,17 @@ import peasy.*;
 
 PeasyCam cam;
 PImage img;
-PImage nubes; 
+PImage nubes;
 boolean debug = false;
 boolean showGrid = false;
-Path path  = new Path();
+//Path path  = new Path();
 GeeseSystem geeseSystem;
 int gridSize = 20;
 FoodManager foodManager = new FoodManager();
 float pathY = 25;
 PImage treeImage;
 ArrayList<SystemSeasons> clima;
+ArrayList<Path> paths = new ArrayList();
 
 void setup() {
   size(1200, 720, P3D);
@@ -24,10 +25,10 @@ void setup() {
   sphereDetail(2);
 
   //setCamAngle();
-  loadPathJSONFromFile("pacific");
-  loadPathJSONFromFile("mississippi");
-  loadPathJSONFromFile("central");
-  loadPathJSONFromFile("atlantic");
+  loadPathJSONFromFile("pacific", #ECEE81);
+  loadPathJSONFromFile("mississippi", #8DDFCB);
+  loadPathJSONFromFile("central", #82A0D8);
+  loadPathJSONFromFile("atlantic", #EDB7ED);
   loadFoodJSONFromFile();
 }
 
@@ -51,13 +52,16 @@ void loadFoodJSONFromFile() {
   }
 }
 
-void loadPathJSONFromFile(String fileName) {
+void loadPathJSONFromFile(String fileName, color c) {
   String filePath = "resources\\data\\" + fileName + ".json";
 
   JSONObject json = loadJSONObject(filePath);
 
   if (json != null) {
+
     int index = 1;
+    Path path = new Path(c);
+
     while (json.hasKey("path_" + index)) {
       JSONObject pathData = json.getJSONObject("path_" + index);
       JSONArray casilla1 = pathData.getJSONArray("casilla1");
@@ -72,6 +76,8 @@ void loadPathJSONFromFile(String fileName) {
 
       index++;
     }
+
+    paths.add(path);
   } else {
     println("Failed to load JSON file: resources\\data\\" + fileName + ".json");
   }
@@ -103,13 +109,13 @@ void keyPressed() {
     cam.reset();
     //setCamAngle();
   }
-  
+
   // ------ -------SOLO PARA PRUEBA ---------------------
   if (keyPressed && key == '0') {
     geeseSystem.addAgent(img.width/20, img.height/20, 50, 50);
   }
   // ----------------------------------------------------
-  
+
   if (keyPressed && Character.toLowerCase(key) == 'd') {
     debug = !debug;
   }
@@ -145,16 +151,20 @@ void draw() {
   translate(0, 0, 0);
   image(img, -img.width/2, -img.height/2);
   popMatrix();
-  for (SystemSeasons s : clima){
+  for (SystemSeasons s : clima) {
     s.display();
   }
   if (showGrid) drawGrid();
   if (debug) drawAxes(2000);
 
   //foodManager.display();
-  path.display();
-  geeseSystem.update();
   
+  for (Path p : paths) {
+   p.display(); 
+  }
+  //path.display();
+  
+  geeseSystem.update();
 }
 
 void drawGrid() {

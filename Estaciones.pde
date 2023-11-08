@@ -74,7 +74,7 @@ class Estaciones {
   void display() {
     if (estacion == "Invierno" | estacion == "Otoño") {
       for (int i =0; i < cant; i++) {
-        tint(255, 127);
+        tint(255, 200);
         image(nubeImage, x[i], y[i]);
       }
     }

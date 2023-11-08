@@ -3,10 +3,10 @@ class PathSegment {
   PVector end;
   color c;
 
-  PathSegment(float x1, float z1, float x2, float z2) {
+  PathSegment(float x1, float z1, float x2, float z2, color c) {
     start = new PVector(x1, pathY, z1);
     end = new PVector(x2, pathY, z2);
-    this.c = #7E9558;
+    this.c = c;
   }
   void display() {
     beginShape();
