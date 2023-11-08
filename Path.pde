@@ -8,7 +8,7 @@ class Path {
   }
   void addPointByGrid(int x1, int y1, int x2, int y2) {
     float startX = -img.width / 2;
-    float startY = -img.height;
+    float startY = -img.height / 2;
     
     float gx1 = startX + x1*gridSize;
     float gy1 = startY + y1*gridSize;

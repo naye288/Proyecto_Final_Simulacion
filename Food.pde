@@ -29,7 +29,7 @@ class FoodSystem {
     foods = new ArrayList<Food>();
 
     float startX = -img.width / 2;
-    float startY = -img.height;
+    float startY = -img.height / 2;
     float gx1 = startX + x1 * gridSize;
     float gy1 = startY + y1 * gridSize;
     float gx2 = (x2 - x1) * gridSize;

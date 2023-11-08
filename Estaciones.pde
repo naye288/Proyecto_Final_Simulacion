@@ -40,11 +40,11 @@ class Estaciones {
     for (int i = 0; i < cant; i++) {
       int posX, posY;
       if (pos) { // sur de NorteAmérica
-        posX = (int) random(-mapY /5, mapX /3);
-        posY = (int) random(-mapY / 3, -mapX / 10);
+        posX = (int) random(-mapY / 2, mapX / 4);
+        posY = (int) random(mapY / 6, mapX / 4);
       } else { // norte de NorteAmérica
-        posX = (int) random(-mapY /4, mapX /4);
-        posY = (int) random(-mapX/2, -mapY/3);
+        posX = (int) random(-mapX / 4, mapY / 3);
+        posY = (int) random(-mapX / 4, mapY / 6);
       }
       //imagenes[i] = loadImage(nubes);
       //imagenes[i].resize(300, 200);
@@ -74,9 +74,11 @@ class Estaciones {
   void display() {
     if (estacion == "Invierno" | estacion == "Otoño") {
       for (int i =0; i < cant; i++) {
+        tint(255, 127);
         image(nubeImage, x[i], y[i]);
       }
     }
+    tint(255);
     mostrarTexto();
   }
 }

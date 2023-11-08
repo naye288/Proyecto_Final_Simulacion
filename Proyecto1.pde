@@ -143,7 +143,7 @@ void draw() {
   background(0);
   pushMatrix();
   translate(0, 0, 0);
-  image(img, -img.width/2, -img.height);
+  image(img, -img.width/2, -img.height/2);
   popMatrix();
   for (SystemSeasons s : clima){
     s.display();
@@ -151,7 +151,7 @@ void draw() {
   if (showGrid) drawGrid();
   if (debug) drawAxes(2000);
 
-  foodManager.display();
+  //foodManager.display();
   path.display();
   geeseSystem.update();
   
@@ -161,17 +161,17 @@ void drawGrid() {
   int numRows = ceil(img.height / float(gridSize));
   int numCols = ceil(img.width / float(gridSize));
 
-  float startX = -img.width;
-  float startY = -img.height;
+  float startX = -img.width/2;
+  float startY = -img.height/2;
 
   stroke(#6c79a6);
   strokeWeight(2);
 
-  for (int i = 0; i <= numRows; i++) {
+  for (int i = 0; i < numRows; i++) {
     float y = startY + i * gridSize;
     line(startX, y, startX + img.width, y);
   }
-  for (int i = 0; i <= numCols; i++) {
+  for (int i = 0; i < numCols; i++) {
     float x = startX + i * gridSize;
     line(x, startY, x, startY + img.height);
   }
