@@ -7,7 +7,7 @@ boolean debug = false;
 boolean showGrid = false;
 Path path  = new Path();
 GeeseSystem geeseSystem;
-int gridSize = 40;
+int gridSize = 20;
 FoodManager foodManager = new FoodManager();
 float pathY = 25;
 PImage treeImage;
@@ -16,7 +16,7 @@ ArrayList<SystemSeasons> clima;
 void setup() {
   size(1200, 720, P3D);
   cam = new PeasyCam(this, 1000);
-  img = loadImage("resources\\images\\_map.png");
+  img = loadImage("resources\\images\\_map.jpg");
   clima = new ArrayList<SystemSeasons>();
   clima.add(new SystemSeasons(true));//sur de norteamerica
   clima.add(new SystemSeasons(false));//norte de norteamerica
