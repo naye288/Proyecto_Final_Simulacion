@@ -67,6 +67,7 @@ class Goose {
     applyForce(steering);
   }
 
+  // Comportamiento de deambular
   void wander() {
     PVector desired = vel.copy();
     desired.setMag(lookAhead);
@@ -81,6 +82,7 @@ class Goose {
     seek(desired);
   }
 
+  // Comportamiento de bandada
   void flock(ArrayList<Goose> geese) {
     PVector alignResult = new PVector(0, 0, 0);
     PVector separateResult = new PVector(0, 0, 0);
@@ -134,6 +136,50 @@ class Goose {
       cohereResult.limit(maxSteeringForce);
       applyForce(cohereResult);
     }
+  }
+
+  // Comportamiento de seguimiento de rutas
+  void follow(Path path) {
+
+    // Calcular la posición futura
+    PVector predicted = getPredictedPos();
+
+    // Busca un punto válido entre todas las rutas
+    try {
+      ArrayList<PVector> points = getValidAheadPoint(predicted, path);
+      PVector normal = points.get(0);
+      PVector aheadPoint = points.get(1);
+      if (predicted.dist(normal) > r) {
+        seek(aheadPoint);
+      } else {
+        // va dentro del camino
+      }
+    }
+    catch (Exception e) {
+      // Esto sucedería cuando no hay un punto a seguir
+      // ¿Qué hacer? ¿deambular?
+    }
+  }
+
+  PVector getPredictedPos() {
+    PVector predicted = vel.copy();
+    predicted.setMag(lookAhead);
+    predicted.add(pos);
+    return predicted;
+  }
+
+  ArrayList<PVector> getValidAheadPoint(PVector predicted, Path path) throws Exception {
+    int closest = path.getClosestSegmentIndex(pos);
+    for (int i = 0; i < path.segments.size(); i++) {
+      PathSegment s = path.segments.get((closest + i) % path.segments.size());
+      ArrayList<PVector> aheadPoints = s.getAheadPoints(predicted, pathAhead);
+      //PVector normal = aheadPoints.get(0);
+      PVector ahead = aheadPoints.get(1);
+      if (s.contains(ahead)) {
+        return aheadPoints;
+      }
+    }
+    throw new Exception("Couldn't find a valid ahead point to follow");
   }
 
   void update() {
