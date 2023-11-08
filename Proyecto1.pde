@@ -11,7 +11,9 @@ int gridSize = 20;
 FoodManager foodManager = new FoodManager();
 PImage treeImage;
 ArrayList<SystemSeasons> clima;
+
 ArrayList<Path> paths = new ArrayList();
+Path mainPath = new Path(0);
 
 void setup() {
   size(1200, 720, P3D);
@@ -72,6 +74,7 @@ void loadPathJSONFromFile(String fileName, color c) {
       int y2 = casilla2.getInt(1);
 
       path.addPointByGrid(x1, y1, x2, y2);
+      mainPath.addPointByGrid(x1, y1, x2, y2);
 
       index++;
     }

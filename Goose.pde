@@ -47,16 +47,17 @@ class Goose {
     cohesionRadio = 150;
     cohesionRatio = 1;
 
-    alignmentRadio = 80;
+    alignmentRadio = 30;
     alignmentRatio = 1;
 
-    separationRadio = 10;
+    separationRadio = 30;
     separationRatio = 3;
   }
 
   void applyForce(PVector force) {
     PVector f = force.copy();
     f.div(mass);
+    f.z = 0;
     acc.add(f);
   }
 
@@ -158,6 +159,7 @@ class Goose {
     catch (Exception e) {
       // Esto sucedería cuando no hay un punto a seguir
       // ¿Qué hacer? ¿deambular?
+      wander();
     }
   }
 

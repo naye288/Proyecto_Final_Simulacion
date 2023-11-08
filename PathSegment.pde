@@ -66,7 +66,7 @@ class PathSegment {
     }
   }
   
-  float distance(PVector pos) {
+    float distance(PVector pos) {
     PVector v = PVector.sub(pos, start);
     PVector w = PVector.sub(end, start);
     w.normalize();
@@ -81,12 +81,14 @@ class PathSegment {
       return min(startDist, endDist);
     }
   }
+
   boolean contains(PVector pos) {
     float A = pos.dist(start);
     float B = pos.dist(end);
     float C = start.dist(end);
     return A + B - C < 0.01;
   }
+
   ArrayList<PVector> getAheadPoints(PVector predicted, float pathAhead) {
     ArrayList<PVector> result = new ArrayList();
     PVector v = PVector.sub(predicted, start);
