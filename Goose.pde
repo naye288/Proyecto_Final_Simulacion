@@ -35,8 +35,8 @@ class Goose {
 
     maxSpeed = 1;
     maxSteeringForce = 1;
-    pathAhead = 30;
-    lookAhead = 30;
+    pathAhead = -30;
+    lookAhead = -30;
 
     // Para el comportamiento de deambular
     wanderRadius = 20;

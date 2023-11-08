@@ -9,7 +9,6 @@ boolean showGrid = false;
 GeeseSystem geeseSystem;
 int gridSize = 20;
 FoodManager foodManager = new FoodManager();
-float pathY = 25;
 PImage treeImage;
 ArrayList<SystemSeasons> clima;
 ArrayList<Path> paths = new ArrayList();
